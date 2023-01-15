@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Intro section with dropdown navigation</title>
+</head>
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html{
+      font-family: sans-serif;
+      background-color: rgb(243, 243, 243);
+    }
+    body{
+      margin: 0 auto;
+      max-width: 1440px;
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      
+    }
+    header{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    nav{
+      margin-top: 1em;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      padding:2em 2.5em;
+      gap:3.9em;
+      
+    }
+    
+    nav a{
+      font-weight: bold;
+      color:grey;
+      text-decoration: none;
+    }
+    nav a:hover{
+      color: black;
+    }
+    .anchors{
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    #ham-icon{
+          display: none;
+        }
+    #close-button{
+         display: none;
+        }
+    .drop-down{
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap:2.4em;
+      
+    }
+
+    .link-container{
+      position: relative;
+    }
+    
+
+     .menu{
+      background: white;
+      border-radius: .5em;
+     position: absolute;
+      top:150%;
+      right: 0;
+      padding:1.5em;
+      display: none;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap:1em;
+    }
+
+    .menu a{
+      width: 100px;
+      font-weight: normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+
+    .link-container a{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap:.3em;
+    }
+    .authentication{
+      display: flex;
+      align-items: center;
+      gap:1em;
+    }
+    .authentication a:nth-child(1){
+      border:2px solid transparent;
+      border-radius: .8em;
+      padding: .6em 1.2em;
+    }
+    .authentication a{
+      border:2px solid grey;
+      border-radius: .8em;
+      padding: .6em 1.2em;
+    }
+    .authentication a:nth-child(2):hover{
+      border-color: black;
+    }
+    .main-content{
+      margin-top: 25px;
+      width: 100%;
+      padding: 0 8em;
+      display: flex;
+      justify-content: center;      
+      align-items: center;
+      
+    }
+    .main-content picture{
+      order: 2;
+    }
+    .main-content picture img{
+      display: block;
+      width: 480px;
+      height: auto;
+    }
+    .head{
+      margin-top: 80px;
+      padding: 0 2em;
+      order:1; 
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 2em;
+    }
+   
+    .head h1{
+      line-height: .9em;
+      font-size: 5.5em;
+    }
+    .head h1 span::after{
+      content: '\a';
+      white-space: pre;
+    }
+    .head p{
+      color:rgb(46, 46, 46);
+      padding: 1em 0;
+      padding-right:7em;
+      line-height: 1.3em;
+      font-size: 1.3em;
+    }
+    .head button{
+      border:2px solid black;
+      font-size: 1.3em;
+      font-weight: bold;
+      border-radius: .8em;
+      padding: .7em 1.2em;
+      background-color: black;
+      transition: background .3s ease-in,border .3s ease-in;
+    }
+    .head button a{
+        text-decoration: none;
+        color:white;
+      transition: color .3s ease-in;
+      }
+    .head button:hover{
+      background-color: white;
+      border: 2px solid black;
+    }
+    .head button:hover > a{
+      color:black;
+    }
+    .client-logos{
+      margin-top:4.4em;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 3em;
+    }
+    
+    @media only screen and (max-width: 1110px) {
+      .main-content{ 
+      padding: 0;
+      padding-bottom: 3em;
+      flex-direction: column;
+      justify-content: flex-start;      
+      align-items: center;
+      }
+      .main-content picture{
+        width: 100%;
+        order: 1;
+      }
+      .main-content picture img{
+        display: block;
+        width: 700px;
+        margin:0 auto;
+        object-fit: cover;
+      }
+      .head{
+        width: 100vw;
+        order: 2;
+        align-items: center; 
+        text-align: center;  
+      }
+      .head h1{
+        font-size: 4em;
+      }
+      .head h1 span::after{
+      content: '';
+    }
+      .head p{
+        padding: .5em 0;
+        
+      }
+    }
+    @media only screen and (max-width: 750px){
+      .main-content{
+        margin: 0; 
+      }
+      .main-content picture{
+        width: 100%;
+        order: 1;
+      }
+      .main-content picture img{
+        display: block;
+        width: 100%;
+        margin:0 auto;
+        object-fit: cover;
+      }
+      .head h1{
+        font-size: 3.5em;
+      }
+      .head p{
+      font-size: 1.1em;
+      }
+    .head button{
+      border:2px solid black;
+      font-size: 1.1em;
+    }
+
+    /*  now dealing with hamrburgerMenu menu */
+        nav{
+          margin-top: .3em;
+          padding: .5em 1.5em;
+          position: relative;
+          align-items: flex-start;
+          justify-content: space-between;
+        }
+        .anchors{         
+          position: absolute;
+          right:0;
+          top:-1em;
+          width: 50%;
+          height: 100vh;
+          background-color: white;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap:2em;
+          padding: 1.5em 1.5em;
+          display: none;
+          transition: all .3s ease-out;
+        }
+        #ham-icon{
+          display: block;
+        }
+        #close-button{
+          display: block;
+          position: absolute;
+          right:1.5em;
+          opacity: .7;
+        }
+        #close-button:hover{
+          opacity: 1;
+        }
+        .drop-down{
+          margin-top: 50px;
+          flex-grow: 0;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap:1.5em;
+        }
+        
+        .drop-down a{
+          gap:1em;
+        
+        }
+        .link-container{
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+            
+        }
+     
+          .menu{
+      background: transparent;
+      width: 250px;
+      border-radius: .5em;
+      position: static;
+      padding:1.5em;
+      padding-bottom: 0;
+      display: none;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap:1em;
+    }
+
+    .menu a{
+      width: 100%;
+      font-weight: normal;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+
+
+
+          .authentication{
+        width: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .authentication a{
+        width: 100%;
+        text-align: center;
+      }
+      
+
+    }
+    @media only screen and (max-width: 450px){
+      
+      nav{
+        padding: .5em 1em;
+      }
+        .anchors{         
+          width: 75%;
+        }
+        
+        .head h1{
+          font-size: 2em;
+        }
+        .head p{
+          padding: 0 .4em;
+          font-size: 1em;
+        }
+    }
+
+  </style>
+
+
+<body lang="en">
+  <header lang="en">
+    <nav lang="en">
+      
+      <img src="./images/logo.svg" alt="logo">
+      <img id="ham-icon" src="./images/icon-menu.svg" alt="hamrburgerMenu-menu">
+      
+      <div lang="en" class="anchors">
+          <img id="close-button" src="./images/icon-close-menu.svg" alt="close-button">
+
+        <div class="drop-down">
+        <div class="link-container">
+          <a class="links" href="#">Features <img src="./images/icon-arrow-down.svg" alt="icon-arrow-down"></a>
+        <div class="menu"> 
+          <a href="#"><img src="./images/icon-todo.svg" alt="icon-todo">ToDo List</a>
+          <a href="#"><img src="./images/icon-calendar.svg" alt="icon-calendar">Calender</a>
+          <a href="#"><img src="./images/icon-reminders.svg" alt="icon-reminders">Reminders</a>
+          <a href="#"><img src="./images/icon-planning.svg" alt="icon-planning">Planning</a>
+        </div>
+      </div>
+        <div class="link-container">
+          <a class="links" href="#">Company <img src="./images/icon-arrow-down.svg" alt="icon-arrow-down"></a>
+        <div class="menu">
+          <a href="#">History</a>
+          <a href="#">Our Team</a>
+          <a href="#">Blog</a>
+        </div>
+        </div>
+        <a href="#">Careers</a>
+        <a href="#">About</a>
+      </div>
+      <div class="authentication">
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+      </div>
+      </div>
+    </nav>
+
+    <section class="main-content">
+      <picture>
+        <source media="(min-width:1110px )" srcset="./images/image-hero-desktop.png">
+        <source media="(max-width:1109px )" srcset="./images/image-hero-mobile.png">
+        <img src="./images/image-hero-mobile.png" alt="image-hero-desktop">
+      </picture>
+    
+      <div class="head">
+      <h1 lang="en">
+       <span>Make</span> remote work</h1>
+      <p lang="en">
+        Get your team in sync, no matter your location. Streamline processes,
+        create team rituals, and watch productivity soar.
+      </p>
+      <button>
+        <a href="#">Learn more</a>
+      </button>
+  
+      <div class="client-logos">
+        <img src="./images/client-databiz.svg" alt="client-databiz-logo">
+        <img src="./images/client-audiophile.svg" alt="client-audiophile-logo">
+        <img src="./images/client-meet.svg" alt="client-meet-logo">
+        <img src="./images/client-maker.svg" alt="client-maker-logo">
+      </div>
+  
+    </div>
+  </section>
+
+  </header>
+
+  
+ 
+<script>
+
+
+
+
+   //drop down 
+   src = ['./images/icon-arrow-up.svg','./images/icon-arrow-down.svg'];
+
+   const dropDownLinks = document.querySelectorAll('.drop-down .links');
+
+   dropDownLinks.forEach(value=>{
+    value.addEventListener('click',()=>{showTheMenu(value)});
+   })
+
+   function showTheMenu(value){
+      //handling the dropdo
+    const menu =  value.parentElement.children.item(value.parentElement.children.length-1)
+    if(window.getComputedStyle(menu).getPropertyValue('display') === 'none'){
+      menu.style.display = 'flex';
+    }else{
+      menu.style.display = 'none';
+    }
+
+    //setting the arrow img
+      if((value.children.item(0).src).trim().split('/').pop() == src[0].split('/').pop()){
+        value.children.item(0).src = src[1];  
+        return;
+      }
+      value.children.item(0).src = src[0];
+   }
+
+
+   //setting the hamrburger menu
+   const closeButton = document.getElementById('close-button'),
+   hamrburgerMenu = document.getElementsByClassName('anchors')[0],
+   hamburgerMenuicon = document.getElementById('ham-icon');
+
+   hamburgerMenuicon.onclick = ()=>{
+    let property = window.getComputedStyle(hamrburgerMenu).getPropertyValue('display');
+    if(property === 'none'){
+      hamrburgerMenu.style.display = 'flex';
+    }
+   }
+  
+   closeButton.onclick = ()=>{
+      
+
+      let property = window.getComputedStyle(hamrburgerMenu).getPropertyValue('display');
+      if(property !== "none"){
+        hamrburgerMenu.style.display = "none";
+       
+      }
+   }
+  
+</script>
+</body>
+
+</html>
